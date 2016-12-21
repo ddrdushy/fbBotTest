@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 // Index route
 app.get('/', function (req, res) {
-    res.send('Hello world, I am a chat bot');
+    res.sendFile('index.html');
 });
 
 // for Facebook verification
@@ -34,6 +34,7 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             let text = event.message.text
             sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200));
+            sendGenericMessage(sender);
         }
     }
     res.sendStatus(200);
